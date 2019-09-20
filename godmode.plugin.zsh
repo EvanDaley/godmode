@@ -24,6 +24,9 @@ function recent() {
             fi
         fi
     done
+
+    # TODO: If i=0 still, echo that no branches were found.
+
     printf "\n       Use the indices above to checkout any branch with \"rec \$index\"\n\n"
     }
 }
@@ -35,7 +38,7 @@ function rec() {
     bold=$(tput bold)
     normal=$(tput sgr0)
 
-    git reflog -n100 --pretty='%cr|%gs' --grep-reflog='checkout: moving' HEAD | {
+    git reflog -n200 --pretty='%cr|%gs' --grep-reflog='checkout: moving' HEAD | {
     seen=":"
     i=0
     git_dir="$(git rev-parse --git-dir)"
